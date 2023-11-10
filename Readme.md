@@ -62,3 +62,22 @@ docker build -t qas_simple_flask_app:v1.0 .
 ```
 docker container run -d -p 5000:5000 qas_simple_flask_app:v1.0
 ```
+
+## Docker-compose YML File
+
+```
+version: '3.8'
+services:
+ web:
+  build: .
+  ports: 
+   - "8000:5000"
+db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+```
